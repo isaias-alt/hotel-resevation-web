@@ -1,33 +1,42 @@
 import counterReducer, {
   increment,
   decrement,
-  incrementByAmount,
-} from './counterSlice';
+  incrementByAmount
+} from './counterSlice'
 
+// eslint-disable-next-line no-undef
 describe('counter reducer', () => {
   const initialState = {
     value: 3,
-    status: 'idle',
-  };
+    status: 'idle'
+  }
+  // eslint-disable-next-line no-undef
   it('should handle initial state', () => {
+    // eslint-disable-next-line no-undef
     expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
       value: 0,
-      status: 'idle',
-    });
-  });
+      status: 'idle'
+    })
+  })
 
+  // eslint-disable-next-line no-undef
   it('should handle increment', () => {
-    const actual = counterReducer(initialState, increment());
-    expect(actual.value).toEqual(4);
-  });
+    const actual = counterReducer(initialState, increment())
+    // eslint-disable-next-line no-undef
+    expect(actual.value).toEqual(4)
+  })
 
+  // eslint-disable-next-line no-undef
   it('should handle decrement', () => {
-    const actual = counterReducer(initialState, decrement());
-    expect(actual.value).toEqual(2);
-  });
+    const actual = counterReducer(initialState, decrement())
+    // eslint-disable-next-line no-undef
+    expect(actual.value).toEqual(2)
+  })
 
+  // eslint-disable-next-line no-undef
   it('should handle incrementByAmount', () => {
-    const actual = counterReducer(initialState, incrementByAmount(2));
-    expect(actual.value).toEqual(5);
-  });
-});
+    const actual = counterReducer(initialState, incrementByAmount(2))
+    // eslint-disable-next-line no-undef
+    expect(actual.value).toEqual(5)
+  })
+})
