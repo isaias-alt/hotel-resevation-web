@@ -1,13 +1,25 @@
 import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Switch } from 'react-router'
+import Header from './components/Header'
+import Home from './components/Home'
+import SearchPage from './components/SearchPage'
 
-// TODO: Add components -> Header, Home and SearchPage
-// TODO: Route Home and SeachPage with react-router-dom
+// TODO: fix the Switch error
 
 function App () {
   return (
-    <div className='App'>
-      <h1>Hola Mundo</h1>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route path='/'>
+          <Home />
+        </Route>
+        <Route path='/search'>
+          <SearchPage />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 
