@@ -1,6 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Switch } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './components/Home'
 import SearchPage from './components/SearchPage'
@@ -9,17 +8,13 @@ import SearchPage from './components/SearchPage'
 
 function App () {
   return (
-    <Router>
+    <BrowserRouter>
       <Header />
-      <Switch>
-        <Route path='/'>
-          <Home />
-        </Route>
-        <Route path='/search'>
-          <SearchPage />
-        </Route>
-      </Switch>
-    </Router>
+      <Routes>
+        <Route path='/' element={ <Home /> } />
+        <Route path='/search' element={ <SearchPage /> } />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
