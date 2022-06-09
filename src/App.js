@@ -4,8 +4,6 @@ import Header from './components/Header'
 import Home from './components/Home'
 import SearchPage from './components/SearchPage'
 
-// TODO: fix the Switch error
-
 function App () {
   return (
     <BrowserRouter>
