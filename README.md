@@ -1,6 +1,6 @@
-# A Hotel Reservation App
+# A Hotel Reservation Web
 
-A Simple Hotel Reservation App
+A Simple Hotel Reservation Web
 
 ## Getting Started with Create React App and Redux
 
