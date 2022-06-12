@@ -8,14 +8,66 @@ import {
   InputBase,
   Avatar,
   Typography,
+  IconButton,
+  Drawer,
+  ListItem,
+  List,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const Header = () => {
-  const [tablet, setTablet] = useState(false);
+  const [tablet, setTablet] = useState(true);
+  const [draweropen, setDraweropen] = useState(false);
   const classes = useStyle();
 
-  const displayTablet = () => {};
+  const displayTablet = () => {
+    const handleDrawerOpen = () => {
+      setDraweropen(true);
+    };
+
+    const handleDrawerClose = () => {
+      setDraweropen(false);
+    };
+
+    // TODO: resolve the warning
+    const headersData = ["My account", "Previous Bookings", "Log Out"];
+    const getDrawerChoices = () => {
+      return headersData.map((data) => {
+        return (
+          <List>
+            <ListItem>{data}</ListItem>
+          </List>
+        );
+      });
+    };
+
+    return (
+      <Toolbar>
+        <IconButton
+          {...{
+            edge: "start",
+            color: "default",
+            "aria-label": "menu",
+            "aria-haspopup": "true",
+            onClick: handleDrawerOpen,
+          }}
+        >
+          <MenuIcon fontSize="large" />
+        </IconButton>
+        <Drawer
+          {...{
+            anchor: "left",
+            open: draweropen,
+            onClose: handleDrawerClose,
+          }}
+        >
+          <div>{getDrawerChoices()}</div>
+        </Drawer>
+      </Toolbar>
+    );
+  };
+
   const displayDesktop = () => {
     return (
       <Toolbar className={classes.toolbar}>
