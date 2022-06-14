@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import {
@@ -18,18 +18,28 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 const Header = () => {
   const [tablet, setTablet] = useState(true);
+  const [mobile, setMobile] = useState(true);
   const [draweropen, setDraweropen] = useState(false);
   const classes = useStyle();
 
-  const displayTablet = () => {
+  useEffect(() => {
+    const responsiveMobile = () =>
+      window.innerWidth < 580 ? setMobile(true) : setMobile(false);
+    responsiveMobile();
+    window.addEventListener("resize", () => responsiveMobile());
+    const responsiveTablet = () =>
+      window.innerWidth < 900 ? setTablet(true) : setTablet(false);
+    responsiveTablet();
+    window.addEventListener("resize", () => responsiveTablet());
+  }, []);
+
+  const displayMobile = () => {
     const handleDrawerOpen = () => {
       setDraweropen(true);
     };
-
     const handleDrawerClose = () => {
       setDraweropen(false);
     };
-
     const headersData = ["My account", "Previous Bookings", "Log Out"];
     const getDrawerChoices = () => {
       return headersData.map((data, index) => {
@@ -40,7 +50,55 @@ const Header = () => {
         );
       });
     };
+    return (
+      <Toolbar className={classes.toolbar}>
+        <IconButton
+          {...{
+            edge: "start",
+            color: "default",
+            "aria-label": "menu",
+            "aria-haspopup": "true",
+            onClick: handleDrawerOpen,
+          }}
+        >
+          <MenuIcon fontSize="large" />
+        </IconButton>
+        <Drawer
+          {...{
+            anchor: "left",
+            open: draweropen,
+            onClose: handleDrawerClose,
+          }}
+        >
+          <div>{getDrawerChoices()}</div>
+        </Drawer>
+        <Link to="/">
+          <img src={logo} alt="logo" className={classes.logo} />
+        </Link>
+        <div className={classes.right}>
+          <Avatar className={classes.avatar} />
+        </div>
+      </Toolbar>
+    );
+  };
 
+  const displayTablet = () => {
+    const handleDrawerOpen = () => {
+      setDraweropen(true);
+    };
+    const handleDrawerClose = () => {
+      setDraweropen(false);
+    };
+    const headersData = ["My account", "Previous Bookings", "Log Out"];
+    const getDrawerChoices = () => {
+      return headersData.map((data, index) => {
+        return (
+          <List key={index}>
+            <ListItem button>{data}</ListItem>
+          </List>
+        );
+      });
+    };
     return (
       <Toolbar className={classes.toolbar}>
         <IconButton
@@ -98,7 +156,11 @@ const Header = () => {
 
   return (
     <AppBar className={classes.root}>
-      {tablet ? displayTablet() : displayDesktop()}
+      {mobile
+        ? displayMobile()
+        : displayDesktop() && tablet
+        ? displayTablet()
+        : displayDesktop()}
     </AppBar>
   );
 };
