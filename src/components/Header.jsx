@@ -42,7 +42,7 @@ const Header = () => {
     };
 
     return (
-      <Toolbar>
+      <Toolbar className={classes.toolbar}>
         <IconButton
           {...{
             edge: "start",
@@ -63,6 +63,13 @@ const Header = () => {
         >
           <div>{getDrawerChoices()}</div>
         </Drawer>
+        <Link to="/">
+          <img src={logo} alt="logo" className={classes.logo} />
+        </Link>
+        <div className={classes.right}>
+          <Typography className={classes.signin}>Sign In</Typography>
+          <Avatar className={classes.avatar} />
+        </div>
       </Toolbar>
     );
   };
@@ -71,7 +78,7 @@ const Header = () => {
     return (
       <Toolbar className={classes.toolbar}>
         <Link to="/">
-          <img src={logo} className={classes.logo} />
+          <img src={logo} alt="logo" className={classes.logo} />
         </Link>
         <div className={classes.center}>
           <InputBase
