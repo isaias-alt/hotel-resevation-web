@@ -30,13 +30,12 @@ const Header = () => {
       setDraweropen(false);
     };
 
-    // TODO: resolve the warning
     const headersData = ["My account", "Previous Bookings", "Log Out"];
     const getDrawerChoices = () => {
-      return headersData.map((data) => {
+      return headersData.map((data, index) => {
         return (
-          <List>
-            <ListItem>{data}</ListItem>
+          <List key={index}>
+            <ListItem button>{data}</ListItem>
           </List>
         );
       });
