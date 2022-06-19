@@ -1,5 +1,7 @@
 import { CssBaseline, makeStyles } from "@material-ui/core";
-import React from "react";
+import Banner from "./Banner";
+import DatePicker from "./DatePicker";
+import RoomCard from "./RoomCard";
 
 const Home = () => {
   const classes = useStyle();
@@ -7,7 +9,17 @@ const Home = () => {
     <>
       <CssBaseline />
       <div className={classes.root}>
-        <h1>Home Page bitch</h1>
+        <div className={classes.dates}>
+          <DatePicker />
+        </div>
+        <Banner />
+        <div className={classes.section}>
+          <RoomCard />
+          <RoomCard />
+          <RoomCard />
+          <RoomCard />
+          <RoomCard />
+        </div>
       </div>
     </>
   );
@@ -15,6 +27,8 @@ const Home = () => {
 
 const useStyle = makeStyles((theme) => ({
   root: {},
+  dates: {},
+  section: {},
 }));
 
 export default Home;
